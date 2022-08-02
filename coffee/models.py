@@ -1,3 +1,26 @@
 from django.db import models
+from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
-# Create your models here.
+STATUS = ((0, "Draft"), (1, "Published"))
+
+class Coffee(models.Model):
+    coffee_id = models.SmallAutoField(primary_key=True)
+    username = models.ForeignKey(
+        User, on_delete=models.CASCADE,
+        related_name='coffee_post'
+        )
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now_add=True)
+    coffee_name = models.CharField(max_length=30)
+    coffee_origin = models.CharField(max_length=30)
+    coffee_brand = models.CharField(max_length=30)
+    coffee_image = CloudinaryField('image', default='placeholder')
+    slug = models.SlugField(unique=True)
+    status = models.IntegerField(choices=STATUS, default=0)
+
+    class Meta:
+        ordering = ["-created_on"]
+
+    def __str__(self):
+        return self.coffee_name
