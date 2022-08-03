@@ -4,14 +4,14 @@ from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
-class Coffee(models.Model):
+
+class CoffeePost(models.Model):
     coffee_id = models.SmallAutoField(primary_key=True)
     username = models.ForeignKey(
         User, on_delete=models.CASCADE,
-        related_name='coffee_post'
-        )
+        related_name='post_coffee')
     created_on = models.DateTimeField(auto_now_add=True)
-    updated_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now_add=True)    
     coffee_name = models.CharField(max_length=30)
     coffee_origin = models.CharField(max_length=30)
     coffee_brand = models.CharField(max_length=30)
