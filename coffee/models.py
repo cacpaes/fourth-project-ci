@@ -15,6 +15,7 @@ class Coffee(models.Model):
     coffee_name = models.CharField(max_length=30)
     coffee_origin = models.CharField(max_length=30)
     coffee_brand = models.CharField(max_length=30)
+    coffee_content = models.TextField(max_length=300, null=True)
     coffee_image = CloudinaryField('image', default='placeholder')
     slug = models.SlugField(unique=True)
     status = models.IntegerField(choices=STATUS, default=0)
