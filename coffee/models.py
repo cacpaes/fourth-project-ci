@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Published"))
@@ -25,3 +26,12 @@ class CoffeePost(models.Model):
 
     def __str__(self):
         return self.coffee_name
+
+    
+    def save(self, *args, **kwargs):
+        """
+        Function to auto generate slugfield
+        """
+        autoslug = self.coffee_brand + self.coffee_name
+        self.slug = slugify(autoslug)
+        super(CoffeePost, self).save(*args, **kwargs)
