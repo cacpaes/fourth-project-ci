@@ -3,27 +3,27 @@
 {% block content %}
 
 <div class="container text-center">
-    <h2 class="m-2">Add new coffee</h2>
+    <h2 class="m-2">New coffee post</h2>
 </div>
 
 {% if user.is_authenticated %}
 {% load account %}
-<div class="container text-center">
+<div class="modal-dialog modal-dialog-centered">
     <div class="row p-2">
-        <div class="col-md-8 mt-4 mb-4 offset-md-2 bck-grd-gray rounded shadow">
+        <div class="modal-dialog modal-dialog-centered">
 
             <form method="POST" enctype='multipart/form-data'>
                 
                 <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">Add here your coffee.</legend>
-                    <p>Logged as: {% user_display user %}</p>         
+                    <legend class="border-bottom mb-4">New coffee post here</legend>
+                    <p>I am  {% user_display user %}</p>         
                 </fieldset>
                     
                     <div class="container">
-                        <div class="row">
+                        <div class="text-right">
                         {% for field in form  %}
                         {% csrf_token %}
-                        <div class="col-sm-12 m-1">
+                        <div class="m-1 p-1">
                             <b>{{ field.label_tag }}</b> - {{ field }} 
                         </div>
                         {% endfor %}

@@ -7,7 +7,6 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 
 
-
 class CoffeeIndex(generic.ListView):
     model = CoffeePost
     queryset = CoffeePost.objects.filter(status=1).order_by('-created_on')
