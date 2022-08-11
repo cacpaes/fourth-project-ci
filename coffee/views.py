@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from .models import CoffeePost
+from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib import messages
@@ -21,9 +22,9 @@ class CreateCoffee(LoginRequiredMixin, generic.CreateView):
     model = CoffeePost
     fields = ['coffee_name', 'coffee_origin', 'coffee_brand', 'coffee_content', 'coffee_image']
     template_name ='add_coffee.html'
-    success_url =reverse_lazy('home')
+    success_url = reverse_lazy('home')
 
-    def form_valid(self,form):
+    def form_valid(self, form):
         """
         Sets logged in user 
         Sets form default status 
@@ -50,5 +51,25 @@ class EditCoffee(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
         coffee_post = self.get_object()
         return coffee_post.username == self.request.user
 
+
+class DeleteCoffee(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    """
+    User can delete their coffee post.
+    """
+    model = CoffeePost
+    success_url = reverse_lazy('home')
+    success_message = "Deleted."
+    template_name = 'delete_coffee.html'
+
+    def test_func(self):
+        """
+        Function that only allows the user to delete their post.
+        """
+        coffee_post = self.get_object()
+        return coffee_post.username == self.request.user
+
+    def delete(self, request, *args, **kwargs):
+        messages.warning(self.request, self.success_message)
+        return super(DeleteCoffee, self).delete(request, *args, **kwargs)
 
 

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container text-center">
+    <h2 class="m-2">Delete Coffee Post.</h2>
+</div>
+
+<div class="container text-center">
+    <div class="card-body">
+        <p class="mb-1">Name: {{ coffeepost.coffee_name}}</p>
+        <p class="mb-1">Brand: {{ coffeepost.coffee_brand}}</p>
+        <p class="mb-1">Origin: {{ coffeepost.coffee_origin }}</p>
+        {% if "placeholder" in coffeepost.coffee_image.url %}
+        <img class="card-img-top rounded" style="width: 300px; height: 200px" alt="coffee image placeholder" src="{% static 'coffee-placeholder.png' %}">
+        {% else %}
+        <img class="card-img-top rounded" style="width: 250px; height: 150px" alt="Coffee image" src=" {{coffeepost.coffee_image.url }}">
+        {% endif %}                         
+    </div>
+</div>
+
+<div class="container text-center">
+    <div class="col-md-4 ">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div>
+                <p>Attention!</p>
+                <p>Are you sure?</p>
+            </div>
+            <div>
+                <input type="submit" value="Delete" class="btn btn-danger m-2">
+                <a href="{% url 'home' %}" class="btn btn-primary m-2">No, take me back</a>
+            </div>
+        </form>
+    </div>
+</div>       
+
+{%endblock%}

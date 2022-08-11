@@ -3,36 +3,36 @@
 {% block content %}
 
 <div class="container text-center">
-    <h2 class="m-2">New coffee post</h2>
+    <h2 class="m-2">Add new coffee</h2>
 </div>
 
 {% if user.is_authenticated %}
 {% load account %}
-<div class="modal-dialog modal-dialog-centered">
+<div class="container text-center">
     <div class="row p-2">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="">
 
             <form method="POST" enctype='multipart/form-data'>
                 
                 <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">New coffee post here</legend>
-                    <p>I am  {% user_display user %}</p>         
+                    <legend class="border-bottom mb-4">Add your coffee info here.</legend>
+                    <p>User: {% user_display user %}</p>         
                 </fieldset>
                     
                     <div class="container">
-                        <div class="text-right">
+                        <div class="row">
                         {% for field in form  %}
                         {% csrf_token %}
-                        <div class="m-1 p-1">
+                        <div class="col-sm-12 m-1">
                             <b>{{ field.label_tag }}</b> - {{ field }} 
                         </div>
                         {% endfor %}
                         </div>  
                     </div>
                 
-                <div class="mt-2 p-1">
+                <div class="mt-3 p-3">
                     <input class="btn btn-success m-1" type="submit" value="Submit">
-                    <a class="btn btn-primary m-1" href="{% url  'home'%}" >Cancel</a>
+                    <a class="btn btn-primary m-1" href="{% url 'home' %}" class="btn btn-lg">Cancel</a>
                 </div>
             </form>
 
