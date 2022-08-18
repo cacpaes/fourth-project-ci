@@ -73,3 +73,4 @@ class DeleteCoffee(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin,
         return super(DeleteCoffee, self).delete(request, *args, **kwargs)
 
 
+
