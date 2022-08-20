@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- Header section and hero image-->
+<header>
+    <div class="hero-image">
+        <div class="hero-text">
+          <h1>Taste Coffee</h1>
+          <p>The place to post your favorite coffee</p>
+          
+        </div>
+        
+    </div>
+</header>
+
+<div class="container-fluid bck-grd-black">
+    <div class="col">
+        <div class="text-center">
+            <h2 class="txt-shadow-y txt-white p-4">Coffee</h2>
+        </div>
+        <a href="{% url 'create_coffee' %}" > Create Coffee</a>
+        <div class="row">
+        {% for post in coffeepost_list %}
+            <div class="col-md-6 p-0">
+                <div class="card m-3">
+                        <div class="card-body m-1 p-1 text-center">
+                            <div class="image-container">
+                                {% if "placeholder" in post.coffee_image.url  %}
+                                <img class="card-img-top rounded" style="width: 300px; height: 200px" alt="coffee image placeholder" src="{% static 'coffee-placeholder.png' %}">
+                                {% else %}
+                                <img class="card-img-top rounded" style="width: 250px; height: 150px" alt="Coffee image" src=" {{post.coffee_image.url}}">
+                                {% endif %}                               
+                            </div>
+                            <p class="card-text mt-2">Name: {{ post.coffee_name }}</p>
+                            <p class="card-text">Brand: {{ post.coffee_brand }}</p>
+                            <p class="card-text">Origin: {{ post.coffee_origin }}</p>
+                            
+                            <a href="{% url 'edit_coffee' post.slug %}">Edit</a>
+                              
+                            <a href="{% url 'delete_coffee' post.slug %}">Delete</a>  
+                                                                
+                        </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:2 %}
+                </div>
+                <div class="row">
+            {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+
+    
+      
+      
+</div>
+{% endblock content %}
