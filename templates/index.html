@@ -8,6 +8,7 @@
         <div class="hero-text">
           <h1>Taste Coffee</h1>
           <p>The place to post your favorite coffee</p>
+          
         </div>
     </div>
 </header>
@@ -32,8 +33,7 @@
                             <p class="card-text mt-2">Name: {{ post.coffee_name }}</p>
                             <p class="card-text">Brand: {{ post.coffee_brand }}</p>
                             <p class="card-text">Origin: {{ post.coffee_origin }}</p>
-                            
-                                             
+                            <p class="card-text">Content: {{post.coffee_content}}</p>                
                         </div>
                 </div>
             </div>
@@ -44,5 +44,9 @@
         {% endfor %}
         </div>
     </div>
+
+    
+      
+      
 </div>
 {% endblock content %}
