@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from .models import CoffeePost
+from .forms import CoffeePostForm
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render, get_object_or_404, reverse
@@ -14,13 +15,20 @@ class CoffeeIndex(generic.ListView):
     template_name = 'index.html'
     paginate_by = 6
 
+class CoffeeMyarea(generic.ListView):
+    model = CoffeePost
+    template_name = 'my-area.html'
+    paginate_by = 6
+    def get_queryset(self):
+        return CoffeePost.objects.filter(username=self.request.user).order_by('-created_on')
 
-class CreateCoffee(LoginRequiredMixin, generic.CreateView):
+
+class CreateCoffee(generic.CreateView, LoginRequiredMixin):
     """
     User can create a coffee post.
     """
     model = CoffeePost
-    fields = ['coffee_name', 'coffee_origin', 'coffee_brand', 'coffee_content', 'coffee_image']
+    form_class= CoffeePostForm
     template_name ='add_coffee.html'
     success_url = reverse_lazy('home')
 
@@ -39,7 +47,7 @@ class EditCoffee(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     User can edit their coffee post.
     """
     model = CoffeePost
-    fields = ['coffee_name', 'coffee_origin', 'coffee_brand', 'coffee_content', 'coffee_image']
+    form_class= CoffeePostForm
     template_name = 'add_coffee.html'
     success_url = reverse_lazy('home')
     success_message = "Your post is up to date."
@@ -57,7 +65,7 @@ class DeleteCoffee(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin,
     User can delete their coffee post.
     """
     model = CoffeePost
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('myarea')
     success_message = "Deleted."
     template_name = 'delete_coffee.html'
 
