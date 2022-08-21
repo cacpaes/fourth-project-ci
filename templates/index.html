@@ -2,8 +2,7 @@
 {% load static %}
 {% block content %}
 
-<!-- Header section and hero image-->
-<header>
+
     <div class="hero-image">
         <div class="hero-text">
           <h1>Taste Coffee</h1>
@@ -11,7 +10,7 @@
           
         </div>
     </div>
-</header>
+
 
 <div class="container-fluid bck-grd-black">
     <div class="col">
@@ -23,17 +22,18 @@
             <div class="col-md-6 p-0">
                 <div class="card m-3">
                         <div class="card-body m-1 p-1 text-center">
+                            {% if post.coffee_image.url  %}
                             <div class="image-container">
-                                {% if "placeholder" in post.coffee_image.url  %}
-                                <img class="card-img-top rounded" style="width: 300px; height: 200px" alt="coffee image placeholder" src="{% static 'coffee-placeholder.png' %}">
-                                {% else %}
-                                <img class="card-img-top rounded" style="width: 250px; height: 150px" alt="Coffee image" src=" {{post.coffee_image.url}}">
-                                {% endif %}                               
+                                <img class="card-img-top rounded img-fluid"  alt="Coffee image" src=" {{post.coffee_image.url}}">                       
                             </div>
-                            <p class="card-text mt-2">Name: {{ post.coffee_name }}</p>
-                            <p class="card-text">Brand: {{ post.coffee_brand }}</p>
-                            <p class="card-text">Origin: {{ post.coffee_origin }}</p>
-                            <p class="card-text">Content: {{post.coffee_content}}</p>                
+                            {% endif %}
+                            <section class="mb-4">
+                                <p class="card-text mt-2 align-text">Name: {{ post.coffee_name }}</p>
+                            <p class="card-text align-text">Brand: {{ post.coffee_brand }}</p>
+                            <p class="card-text align-text">Origin: {{ post.coffee_origin }}</p>
+                            <p class="card-text align-text">Content: {{post.coffee_content}}</p>
+                            </section>  
+                                            
                         </div>
                 </div>
             </div>
@@ -48,8 +48,8 @@
     <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                <a class="link-primary" href="?page=1">&laquo; first</a>
+                <a class="link-dark" href="?page={{ page_obj.previous_page_number }}">previous</a>
             {% endif %}
     
             <span class="current">
@@ -57,12 +57,14 @@
             </span>
     
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                <a class="link-primary" href="?page={{ page_obj.next_page_number }}">next</a>
+                <a  class="link-dark" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
             {% endif %}
         </span>
     </div>
       
       
 </div>
+
+
 {% endblock content %}
