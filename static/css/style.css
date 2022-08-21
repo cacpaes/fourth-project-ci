@@ -54,3 +54,11 @@ text-align: left;
 .align-text{
   text-align: center;
 }
+
+.none{
+  display: none;
+}
+
+.center{
+  margin: auto;
+}

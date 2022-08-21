@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div style="margin:auto">
+
+    <h1 class="align-text">{{ object.coffee_name }} </h1>
+    <h3 class="align-text">{{object.username}}</h3>
+    
+    
+    <div class="col-md-6 p-0" style="margin: auto;">
+        <div class="card m-3">
+                <div class="card-body m-1 p-1 text-center">
+                    {% if object.coffee_image.url  %}
+                    <div class="image-container">
+                        <img class="card-img-top rounded img-fluid"  alt="Coffee image" src=" {{object.coffee_image.url}}">                       
+                    </div>
+                    {% endif %}
+                    <section class="mb-4">
+                    <p class="card-text align-text">Brand: {{ object.coffee_brand }}</p>
+                    <p class="card-text align-text">Origin: {{ object.coffee_origin }}</p>
+                    <p class="card-text align-text">Content: {{object.coffee_content}}</p>
+                    </section>  
+                    <a class="list-group-item list-group-item-action active fit-content" href="{% url 'home' %}">Back</a>                 
+                </div>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock content %}
