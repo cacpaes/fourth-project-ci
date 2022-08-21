@@ -41,6 +41,12 @@ class CreateCoffee(generic.CreateView, LoginRequiredMixin):
         form.instance.status = 1
         return super(CreateCoffee, self).form_valid(form)
 
+class DetailCoffee(generic.DetailView):
+    model = CoffeePost
+    template_name="detail_coffee.html"
+    slug_url_kwarg = 'slug'
+
+
 
 class EditCoffee(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     """
