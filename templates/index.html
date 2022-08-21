@@ -1,7 +1,44 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+{% block javascripts %}
+<script>
+    function openOrClose(slug, buttonClose, buttonOpen){
+        const infos = document.getElementById(slug)
 
+        infos.style.cssText =
+            'display: none;';
+
+        const btnOpen = document.getElementById(buttonOpen)
+        btnOpen.style.cssText =
+            'display: inline-block;';
+
+        const btnClose = document.getElementById(buttonClose)
+        btnClose.style.cssText =
+            'display: none;';
+
+    }
+
+    function openDetails(slug, buttonClose, buttonOpen){
+
+        const infos = document.getElementById(slug)
+
+        infos.style.cssText =
+            'display: block;';
+
+        const btnOpen = document.getElementById(buttonOpen)
+        btnOpen.style.cssText =
+            'display: none;';
+
+        const btnClose = document.getElementById(buttonClose)
+        btnClose.style.cssText =
+            'display: inline-block;';    
+    }
+
+
+
+</script>
+{% endblock javascripts %}
 
     <div class="hero-image">
         <div class="hero-text">
@@ -27,11 +64,21 @@
                                 <img class="card-img-top rounded img-fluid"  alt="Coffee image" src=" {{post.coffee_image.url}}">                       
                             </div>
                             {% endif %}
-                            <section class="mb-4">
+                            <button type="button" id="{{post.coffee_name}}"  onclick="openDetails('{{post.slug}}', '{{post.coffee_id}}', '{{post.coffee_name}}')" class="mt-3 btn btn-info">
+                                Open
+                            </button>
+                            <button type="button" id="{{post.coffee_id}}" onclick="openOrClose('{{post.slug}}', '{{post.coffee_id}}', '{{post.coffee_name}}')" class="none btn btn-info mt-3">
+                                Close
+                            </button>
+
+                           
+
+                            <section  id="{{post.slug}}" class="mb-4 none">
                                 <p class="card-text mt-2 align-text">Name: {{ post.coffee_name }}</p>
                             <p class="card-text align-text">Brand: {{ post.coffee_brand }}</p>
                             <p class="card-text align-text">Origin: {{ post.coffee_origin }}</p>
                             <p class="card-text align-text">Content: {{post.coffee_content}}</p>
+                            <a class="list-group-item list-group-item-action active fit-content center" style="margin: auto;" href="{% url 'detail' post.slug %}">View more</a>
                             </section>  
                                             
                         </div>
@@ -68,3 +115,4 @@
 
 
 {% endblock content %}
+
