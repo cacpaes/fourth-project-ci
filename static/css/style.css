@@ -3,8 +3,8 @@ body, html {
     background-color: rgb(235, 241, 241);
 }
 
-h1,p {
-text-align: left;
+h1,h3,p {
+text-align: center;
 }
 
 /* The hero image */

@@ -5,27 +5,30 @@
 <div class="container text-center">
     <h2 class="m-2">Delete Coffee Post.</h2>
 </div>
-
-<div class="container text-center">
-    <div class="card-body">
-        <p class="mb-1">Name: {{ coffeepost.coffee_name}}</p>
-        <p class="mb-1">Brand: {{ coffeepost.coffee_brand}}</p>
-        <p class="mb-1">Origin: {{ coffeepost.coffee_origin }}</p>
-        {% if "placeholder" in coffeepost.coffee_image.url %}
-        <img class="card-img-top rounded" style="width: 300px; height: 200px" alt="coffee image placeholder" src="{% static 'coffee-placeholder.png' %}">
-        {% else %}
-        <img class="card-img-top rounded" style="width: 250px; height: 150px" alt="Coffee image" src=" {{coffeepost.coffee_image.url }}">
-        {% endif %}                         
+<div class="col-md-6 p-0" style="margin: auto;">
+    <div class="card m-3">
+        <div class="card-body m-1 p-1 text-center">
+            <div class="card-body m-1 p-1 text-center">
+                <p class="mb-1">Name: {{ coffeepost.coffee_name}}</p>
+                <p class="mb-1">Brand: {{ coffeepost.coffee_brand}}</p>
+                <p class="mb-1">Origin: {{ coffeepost.coffee_origin }}</p>
+                {% if "placeholder" in coffeepost.coffee_image.url %}
+                <img class="card-img-top rounded img-fluid" alt="coffee image placeholder"
+                    src="{% static 'coffee-placeholder.png' %}">
+                {% else %}
+                <img class="card-img-top rounded img-fluid" alt="Coffee image" src=" {{coffeepost.coffee_image.url }}">
+                {% endif %}
+            </div>
+        </div>
     </div>
 </div>
-
-<div class="container text-center">
-    <div class="col-md-4 ">
+<div class="col-md-6 p-0" style="margin: auto;">
+    <div class="card m-3">
         <form method="POST" action="">
             {% csrf_token %}
             <div>
-                <p>Attention!</p>
-                <p>Are you sure?</p>
+                <h3>Attention!</h3>
+                <h3>Are you sure?</h3>
             </div>
             <div>
                 <input type="submit" value="Delete" class="btn btn-danger m-2">
@@ -33,6 +36,6 @@
             </div>
         </form>
     </div>
-</div>       
+</div>
 
 {%endblock%}

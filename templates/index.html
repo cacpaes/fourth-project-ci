@@ -74,10 +74,9 @@
                            
 
                             <section  id="{{post.slug}}" class="mb-4 none">
-                                <p class="card-text mt-2 align-text">Name: {{ post.coffee_name }}</p>
+                            <p class="card-text mt-2 align-text">Name: {{ post.coffee_name }}</p>
                             <p class="card-text align-text">Brand: {{ post.coffee_brand }}</p>
                             <p class="card-text align-text">Origin: {{ post.coffee_origin }}</p>
-                            <p class="card-text align-text">Content: {{post.coffee_content}}</p>
                             <a class="list-group-item list-group-item-action active fit-content center" style="margin: auto;" href="{% url 'detail' post.slug %}">View more</a>
                             </section>  
                                             
