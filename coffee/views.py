@@ -12,12 +12,12 @@ class CoffeeIndex(generic.ListView):
     model = CoffeePost
     queryset = CoffeePost.objects.filter(status=1).order_by('-created_on')
     template_name = 'index.html'
-    paginate_by = 6
+    paginate_by = 10
 
 class CoffeeMyarea(generic.ListView):
     model = CoffeePost
     template_name = 'my-area.html'
-    paginate_by = 6
+    paginate_by = 10
     def get_queryset(self):
         return CoffeePost.objects.filter(username=self.request.user).order_by('-created_on')
 

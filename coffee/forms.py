@@ -25,6 +25,10 @@ class CoffeePostForm(forms.ModelForm):
         ]
 
 class CommentForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={ 'class': 'form-control'}), label="Name")
+    email = forms.CharField(widget=forms.TextInput(attrs={ 'class': 'form-control'}), label="Email")
+    body = forms.CharField(widget=forms.Textarea(attrs={ 'class': 'form-control'}), label="Comment")
+
     class Meta:
         model = Comment
         fields = ('name', 'email', 'body')

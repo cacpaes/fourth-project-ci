@@ -4,7 +4,7 @@ body, html {
 }
 
 h1,h3,p {
-text-align: center;
+text-align: ledt;
 }
 
 /* The hero image */
@@ -52,7 +52,7 @@ text-align: center;
 }
 
 .align-text{
-  text-align: center;
+  text-align: left;
 }
 
 .none{

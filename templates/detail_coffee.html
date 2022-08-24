@@ -3,19 +3,18 @@
 {% block content %}
 <div style="margin:auto">
 
-    <h4 class="align-text">Coffee name: {{ post.coffee_name }} </h4>
-    <h4 class="align-text">Created by: {{post.username}}</h4>
 
-
-    <div class="col-md-6 p-0" style="margin: auto;">
+    <div class="col-md-6 p-0" style="width: 100%;">
         <div class="card m-3">
             <div class="card-body m-1 p-1 text-center">
                 {% if post.coffee_image.url  %}
                 <div class="image-container">
-                    <img class="card-img-top rounded img-fluid" alt="Coffee image" src=" {{post.coffee_image.url}}">
+                    <img class="card-img-top rounded img-thumbnail" style="width: 15em; height: 15em;" alt="Coffee image" src=" {{post.coffee_image.url}}">
+                    <p class="card-text" style="text-align: center;">Created by: {{post.username}}</p>
                 </div>
                 {% endif %}
                 <section class="mb-4">
+                    <p class="card-text align-text">Name: {{ post.coffee_name }}</p>
                     <p class="card-text align-text">Brand: {{ post.coffee_brand }}</p>
                     <p class="card-text align-text">Origin: {{ post.coffee_origin }}</p>
                     <p class="card-text align-text"> {{post.coffee_content}}</p>
@@ -25,9 +24,13 @@
         </div>
     </div>
 
+    {% if comments%}
+    <div class="">
+    <h4 class="subtitle align-text"> Comments</h1>
+   
     {% for comment in comments %}
     <div class="comments" style="padding: 10px;">
-        <p class="font-weight-bold">
+        <p class="font-weight-bold align-text">
             {{ comment.name }}
             <span class=" text-muted font-weight-normal">
                 {{ comment.created_on }}
@@ -36,6 +39,8 @@
         {{ comment.body | linebreaks }}
     </div>
     {% endfor %}
+</div>
+    {%endif %}
 
     <div class="card-body">
         {% if new_comment %}
