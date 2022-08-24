@@ -1,4 +1,4 @@
-from .models import CoffeePost
+from .models import CoffeePost, Comment
 from django import forms
 
 
@@ -23,3 +23,8 @@ class CoffeePostForm(forms.ModelForm):
             'coffee_content',
             'coffee_image'
         ]
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('name', 'email', 'body')
