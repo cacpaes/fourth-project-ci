@@ -56,9 +56,9 @@
         </div>
         <div class="row">
         {% for post in coffeepost_list %}
-            <div class="col-md-6 p-0">
-                <div class="card m-3">
-                        <div class="card-body m-1 p-1 text-center">
+            <div class="flex-container" style="width: 20%;">
+                <div class="card m-1">
+                        <div class="card-body m-6 p-1 text-center">
                             {% if post.coffee_image.url  %}
                             <div class="image-container">
                                 <img class="card-img-top rounded img-fluid"  alt="Coffee image" src=" {{post.coffee_image.url}}">                       
@@ -83,10 +83,7 @@
                         </div>
                 </div>
             </div>
-            {% if forloop.counter|divisibleby:2 %}
-                </div>
-                <div class="row">
-            {% endif %}
+          
         {% endfor %}
         </div>
     </div>

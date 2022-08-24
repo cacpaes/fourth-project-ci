@@ -3,28 +3,55 @@
 {% block content %}
 <div style="margin:auto">
 
-    <h4 class="align-text">Coffee name: {{ object.coffee_name }} </h4>
-    <h4 class="align-text">Created by: {{object.username}}</h4>
-    
-    
+    <h4 class="align-text">Coffee name: {{ post.coffee_name }} </h4>
+    <h4 class="align-text">Created by: {{post.username}}</h4>
+
+
     <div class="col-md-6 p-0" style="margin: auto;">
         <div class="card m-3">
-                <div class="card-body m-1 p-1 text-center">
-                    {% if object.coffee_image.url  %}
-                    <div class="image-container">
-                        <img class="card-img-top rounded img-fluid"  alt="Coffee image" src=" {{object.coffee_image.url}}">                       
-                    </div>
-                    {% endif %}
-                    <section class="mb-4"> 
-                    <p class="card-text align-text">Brand: {{ object.coffee_brand }}</p>
-                    <p class="card-text align-text">Origin: {{ object.coffee_origin }}</p>
-                    <p class="card-text align-text"> {{object.coffee_content}}</p>
-                    </section>  
-                    <a class="list-group-item list-group-item-action active fit-content" href="{% url 'home' %}">Back</a>                 
+            <div class="card-body m-1 p-1 text-center">
+                {% if post.coffee_image.url  %}
+                <div class="image-container">
+                    <img class="card-img-top rounded img-fluid" alt="Coffee image" src=" {{post.coffee_image.url}}">
                 </div>
+                {% endif %}
+                <section class="mb-4">
+                    <p class="card-text align-text">Brand: {{ post.coffee_brand }}</p>
+                    <p class="card-text align-text">Origin: {{ post.coffee_origin }}</p>
+                    <p class="card-text align-text"> {{post.coffee_content}}</p>
+                </section>
+                <a class="list-group-item list-group-item-action active fit-content" href="{% url 'home' %}">Back</a>
+            </div>
         </div>
     </div>
-    
+
+    {% for comment in comments %}
+    <div class="comments" style="padding: 10px;">
+        <p class="font-weight-bold">
+            {{ comment.name }}
+            <span class=" text-muted font-weight-normal">
+                {{ comment.created_on }}
+            </span>
+        </p>
+        {{ comment.body | linebreaks }}
+    </div>
+    {% endfor %}
+
+    <div class="card-body">
+        {% if new_comment %}
+        <div class="alert alert-success" role="alert">
+            Your comment is awaiting moderation
+        </div>
+        {% else %}
+        <h3>Leave a comment</h3>
+        <form method="post" style="margin-top: 1.3em;">
+            {{ comment_form.as_p }}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+        </form>
+        {% endif %}
+    </div>
+
 </div>
 
 {% endblock content %}
