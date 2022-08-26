@@ -9,12 +9,12 @@
         <div class="text-center">
             <h2 class="txt-shadow-y txt-white p-4">My-area</h2>
         </div>
-        <a class="list-group-item list-group-item-action active fit-content" href="{% url 'create_coffee' %}" > Create Coffee</a>
-        <div class="row">
+        <a class="list-group-item list-group-item-action active fit-content create-button" href="{% url 'create_coffee' %}" > Create Coffee</a>
+        <div class="row container-post">
         {% for post in coffeepost_list %}
-            <div class="col-md-6 p-0">
-                <div class="card m-3 card-coffee">
-                        <div class="card-body m-1 p-4 text-center">
+            <div class="flex-container" style="width: 22vw; justify-content: center;">
+                <div class="card m-1">
+                        <div class="card-body m-6 p-1 text-center">
                             {% if post.coffee_image.url  %}
                             <div class="image-container">
                                 <img class="card-img-top rounded img-fluid" alt="Coffee image" src=" {{post.coffee_image.url}}">                       
@@ -38,31 +38,28 @@
                         </div>
                 </div>
             </div>
-            {% if forloop.counter|divisibleby:2 %}
-                </div>
-                <div class="row">
-            {% endif %}
         {% endfor %}
+        </div>
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a class="link-primary" href="?page=1">&laquo; first</a>
+                    <a class="link-dark" href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+        
+                {% if page_obj.has_next %}
+                    <a class="link-primary" href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a  class="link-dark" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
         </div>
     </div>
 
-    <div class="pagination">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-                <a class="link-primary" href="?page=1">&laquo; first</a>
-                <a class="link-dark" href="?page={{ page_obj.previous_page_number }}">previous</a>
-            {% endif %}
     
-            <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-            </span>
-    
-            {% if page_obj.has_next %}
-                <a class="link-primary" href="?page={{ page_obj.next_page_number }}">next</a>
-                <a  class="link-dark" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
-        </span>
-    </div>
       
       
 </div>
