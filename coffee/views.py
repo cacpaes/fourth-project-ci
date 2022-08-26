@@ -46,7 +46,7 @@ def DetailCoffee(request, slug):
     comments = post.comments.filter(active=True)
     new_comment = None
 
-    if request.method == 'POST':
+    if request.method == 'POST' and request.user:
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
             new_comment = comment_form.save(commit=False)
