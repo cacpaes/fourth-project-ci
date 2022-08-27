@@ -1,6 +1,6 @@
 body, html {
     height: 100%;
-    background-color: rgb(235, 241, 241);
+    background-color: #F3E9DC;
 }
 
 h1,h3,p {
@@ -68,7 +68,7 @@ text-align: ledt;
 }
 
 .hover-menu:hover{
-  background-color: chocolate;
+  background-color: #DAB49D;
 }
 
 .container-post{
@@ -150,7 +150,7 @@ button,a{
 }
 
 .background-navbar{
-  background-color: #C08552;
+  background-color: #895737;
 }
 
 .cards{
