@@ -184,6 +184,18 @@ a {
   width: 90%;
 }
 
+.login{
+  margin:auto;
+  text-align: center;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  padding: 1em;
+}
+
+.rede-social :hover{
+  color: #C08552;
+}
+
 @media (min-width: 1500px){
   .image-container{height: 55vh;}
   .about-p{
