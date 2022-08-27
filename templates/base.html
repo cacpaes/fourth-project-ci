@@ -35,6 +35,9 @@
                     <li class="nav-item ms-3">
                         <a class="nav-link active hover-menu" aria-current="page" style="color: white!important;" href="{% url 'home' %}">Home</a>
                     </li>
+                    <li class="nav-item ms-3">
+                        <a class="nav-link active hover-menu" aria-current="page" style="color: white!important;" href="{% url 'home' %}#coffee">Coffees</a>
+                    </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item ms-3" >
                         <a class="nav-link hover-menu" href="{% url 'account_logout' %}">Logout</a>
