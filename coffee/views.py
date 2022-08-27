@@ -70,7 +70,7 @@ class EditCoffee(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     """
     model = CoffeePost
     form_class = CoffeePostForm
-    template_name = 'add_coffee.html'
+    template_name = 'edit_coffee.html'
     success_url = reverse_lazy('home')
     success_message = "Your post is up to date."
 

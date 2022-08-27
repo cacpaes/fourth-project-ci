@@ -5,12 +5,14 @@
 
 
     <div class="col-md-6 p-0 m-5" style="width: 100%;">
-        <div class="card m-5 not-margin-left">
+        <div class="card m-5 not-margin-left card-detail">
             <div class="card-body m-1 p-3 text-center d-flex box-details">
                 {% if post.coffee_image.url  %}
                 <div class="image-container">
                     <img class="card-img-top rounded image-detail" alt="Coffee image" src=" {{post.coffee_image.url}}">
                     <p class="card-text mt-2" style="text-align: center;">Created by: {{post.username}}</p>
+                    <a class="list-group-item list-group-item-action active fit-content mt-3 mb-3 botao-desktop"
+                        href="{% url 'home' %}">Back</a>
                 </div>
                 {% endif %}
                 <section class="mb-4 section-details">
@@ -21,7 +23,7 @@
                         <p class="card-text align-text"> {{post.coffee_content}}</p>
                     </div>
                     
-                    <a class="list-group-item list-group-item-action active fit-content mt-2"
+                    <a class="list-group-item list-group-item-action active fit-content mt-2 botao-mobile"
                         href="{% url 'home' %}">Back</a>
                 </section>
 
@@ -29,7 +31,7 @@
 
             {% if comments%}
             <div class="mt-5 margin-left-details">
-                <h4 class="subtitle align-text"> Comments</h1>
+                <h4 class="subtitle align-text" style="margin-left: 0.5em;"> Comments</h4>
 
                     {% for comment in comments %}
                     <div class="comments" style="padding: 10px;">

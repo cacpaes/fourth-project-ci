@@ -3,8 +3,9 @@ body, html {
     background-color: #F3E9DC;
 }
 
-h1,h3,p {
+h1,h2, h3,h4,p, label, span {
 text-align: ledt;
+color: #895737!important;
 }
 
 /* The hero image */
@@ -22,6 +23,8 @@ text-align: ledt;
   background-size: cover;
   position: relative;
 }
+
+
 
 .hero-text {
   text-align: center;
@@ -129,7 +132,6 @@ a {
 }
 
 .image-detail{
-  width: 20vw;
   height: 50vh;
 }
 
@@ -142,9 +144,7 @@ a {
   margin-left: 1em ;
 }
 
-.margin-left-details{
-  margin-left: 2em;
-}
+
 
 .not-margin-left{
   margin-left: 0!important;
@@ -193,13 +193,100 @@ a {
 }
 
 .rede-social :hover{
-  color: #C08552;
+  color: #C08552!important;
 }
 
+.cancel-btn:hover{
+  color: #fff!important;
+}
+
+.create-btn:hover{
+  color: #C08552!important;
+}
+
+.flex-container-post{
+  width: 22vw;
+}
+
+.direction-posts{
+  flex-direction: column;
+}
+
+.flex-container-post{
+  width: 90vw;
+}
+@media (max-width: 1000px){
+  .botao-desktop{
+    display: none;
+  }
+  .botao-mobile{
+    display: block;
+  }
+  .hero-image{ 
+    height: 8%;
+    font-size: 1em;
+  }
+  .content-text{
+    padding: 0.3;
+  }
+}
+
+@media (min-width: 1000px){
+  .direction-posts{
+    flex-direction: row;
+  }
+
+  .flex-container-post{
+    width: 22vw;
+  }
+
+  .image-detail{
+    width: 20vw;
+    height: 50vh;
+  }
+  .botao-desktop{
+    display: block;
+  }
+  .botao-mobile{
+    display: none;
+  }
+}
+
+@media (max-width: 1300px){
+  .flex-container-post{
+    height: 95vh;
+    margin: auto;
+    margin-left: 1em;
+  }
+  .content-text{
+    margin-top: 4em;
+  }
+
+  .card-detail{
+    margin-left: 0!important;
+  }
+
+  .box-details{
+    margin: 0!important;
+    flex-direction: column;
+  }
+}
+@media (min-width: 1200px){
+  .margin-left-details{
+    margin-left: 2em;
+  }
+}
 @media (min-width: 1500px){
   .image-container{height: 55vh;}
   .about-p{
     width: 60%;
+  }
+  .direction-posts{
+    flex-direction: row;
+  }
+
+  .margin-left-details{
+    margin-left: 2em;
   }
 }
 
@@ -210,3 +297,4 @@ a {
 @media (min-width: 2000px){
   .image-container{height: 70vh;}
 }
+

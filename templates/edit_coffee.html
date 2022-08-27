@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container text-center">
-    <h2 class="m-2">Add new coffee</h2>
+    <h2 class="m-2">Edit your coffee</h2>
 </div>
 
 {% if user.is_authenticated %}
@@ -26,7 +26,7 @@
                     </div>
                 
                 <div class="mt-3 p-3 d-flex">
-                    <input class="list-group-item list-group-item-action active fit-content create-btn" type="submit" value="Create">
+                    <input class="list-group-item list-group-item-action active fit-content create-btn" type="submit" value="Edit">
                     <a class="list-group-item list-group-item-danger fit-content ms-4 cancel-btn" href="{% url 'home' %}" class="btn btn-lg">Cancel</a>
                 </div>
             </form>

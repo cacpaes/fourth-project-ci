@@ -3,50 +3,40 @@
 {% block content %}
 {% block javascripts %}
 <script>
-    function openOrClose(slug, buttonClose, buttonOpen){
-        const infos = document.getElementById(slug)
 
-        infos.style.cssText =
-            'display: none;';
-
-        const btnOpen = document.getElementById(buttonOpen)
-        btnOpen.style.cssText =
-            'display: inline-block;';
-
-        const btnClose = document.getElementById(buttonClose)
-        btnClose.style.cssText =
-            'display: none;';
-
-    }
-
-    function openDetails(slug, buttonClose, buttonOpen){
-
-        const infos = document.getElementById(slug)
-
-        infos.style.cssText =
-            'display: block;';
-
-        const btnOpen = document.getElementById(buttonOpen)
-        btnOpen.style.cssText =
-            'display: none;';
-
-        const btnClose = document.getElementById(buttonClose)
-        btnClose.style.cssText =
-            'display: inline-block;';    
+    const imagens = ['../image/coffeepage.jpg', '../image/coffee2.jpeg', '../image/coffee3.jpeg']
+    //const imagens = ['blue', 'white', 'black']
+    function carrosel(){
+        
+        for(image of imagens){
+            setInterval(alterarImagem(image),160000);
+        }
+        //carrosel()   
     }
 
 
+    function alterarImagem(image){
+        console.log("alterar imagem")
+        console.log(image)
+        const divAlterar = document.getElementById("carrosel")
+        console.log(divAlterar)
+        divAlterar.style.backgroundImage =
+            `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${image});`;
+        //divAlterar.style.backgroundColor = image;  
+    }
 
+    //setTimeout(carrosel,4000);
 </script>
 {% endblock javascripts %}
 
-    <div class="hero-image">
-        <div class="hero-text">
-          <h1>Taste Coffee</h1>
-          <p>The place to post your favorite coffee</p>
-          
+        <div class="hero-image">
+            <div class="hero-text">
+              <h1 style="color: white!important;">Taste Coffee</h1>
+              <p style="color: white!important;">The place to post your favorite coffee</p>
+              
+            </div>
         </div>
-    </div>
+
 
 
 <div class="container-fluid background-main">
@@ -65,9 +55,9 @@ Check it out!!
             <h2 class="txt-shadow-y txt-white p-4">Coffees</h2>
         </div>
 
-        <div class="row container-post">
+        <div class="row container-post direction-posts">
         {% for post in coffeepost_list %}
-            <div class="flex-container" style="width: 22vw; justify-content: center;">
+            <div class="flex-container flex-container-post" style=" justify-content: center;">
                 <div class="card m-1 cards">
                         <div class="card-body m-6 p-1 text-center">
                             {% if post.coffee_image.url  %}
@@ -76,7 +66,7 @@ Check it out!!
                             </div>
                             {% endif %}
 
-                            <section  id="{{post.slug}}" class="mb-4">
+                            <section  id="{{post.slug}}" class="mb-4 content-text">
                             <p class="card-text mt-2 align-text">Name: {{ post.coffee_name }}</p>
                             <p class="card-text align-text">Brand: {{ post.coffee_brand }}</p>
                             <p class="card-text align-text">Origin: {{ post.coffee_origin }}</p>
@@ -94,8 +84,8 @@ Check it out!!
     <div class="pagination background-main">
         <span class="step-links">
             {% if page_obj.has_previous %}
-                <a class="link-primary" href="?page=1">&laquo; first</a>
-                <a class="link-dark" href="?page={{ page_obj.previous_page_number }}">previous</a>
+                <a class="" href="?page=1">&laquo; first</a>
+                <a class="" href="?page={{ page_obj.previous_page_number }}">previous</a>
             {% endif %}
     
             <span class="current">
@@ -103,8 +93,8 @@ Check it out!!
             </span>
     
             {% if page_obj.has_next %}
-                <a class="link-primary" href="?page={{ page_obj.next_page_number }}">next</a>
-                <a  class="link-dark" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                <a class="" href="?page={{ page_obj.next_page_number }}">next</a>
+                <a  class="" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
             {% endif %}
         </span>
     </div>
