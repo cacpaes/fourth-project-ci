@@ -1,0 +1,210 @@
+@startuml
+class "admin.LogEntry <Administration>" as admin.LogEntry #f4d6f1 {
+    log entry
+    --
+    - id (AutoField)
+    + action_time (DateTimeField)
+    ~ user (ForeignKey)
+    ~ content_type (ForeignKey)
+    + object_id (TextField)
+    + object_repr (CharField)
+    + action_flag (PositiveSmallIntegerField)
+    + change_message (TextField)
+    --
+}
+admin.LogEntry *-- auth.User
+admin.LogEntry *-- contenttypes.ContentType
+
+
+class "auth.Permission <Authentication and Authorization>" as auth.Permission #e8f4d6 {
+    permission
+    --
+    - id (AutoField)
+    + name (CharField)
+    ~ content_type (ForeignKey)
+    + codename (CharField)
+    --
+}
+auth.Permission *-- contenttypes.ContentType
+
+
+class "auth.Group <Authentication and Authorization>" as auth.Group #e8f4d6 {
+    group
+    --
+    - id (AutoField)
+    + name (CharField)
+    # permissions (ManyToManyField)
+    --
+}
+auth.Group *--* auth.Permission
+
+
+class "auth.User <Authentication and Authorization>" as auth.User #e8f4d6 {
+    user
+    --
+    - id (AutoField)
+    + password (CharField)
+    + last_login (DateTimeField)
+    + is_superuser (BooleanField)
+    + username (CharField)
+    + first_name (CharField)
+    + last_name (CharField)
+    + email (EmailField)
+    + is_staff (BooleanField)
+    + is_active (BooleanField)
+    + date_joined (DateTimeField)
+    # groups (ManyToManyField)
+    # user_permissions (ManyToManyField)
+    --
+}
+auth.User *--* auth.Group
+auth.User *--* auth.Permission
+
+
+class "contenttypes.ContentType <Content Types>" as contenttypes.ContentType #d6f4de {
+    content type
+    --
+    - id (AutoField)
+    + app_label (CharField)
+    + model (CharField)
+    --
+}
+
+
+class "sessions.Session <Sessions>" as sessions.Session #f4e1d6 {
+    session
+    --
+    + session_key (CharField)
+    + session_data (TextField)
+    + expire_date (DateTimeField)
+    --
+}
+
+
+class "sites.Site <Sites>" as sites.Site #d6f4f0 {
+    site
+    --
+    - id (AutoField)
+    + domain (CharField)
+    + name (CharField)
+    --
+}
+
+
+class "account.EmailAddress <Accounts>" as account.EmailAddress #e2f4d6 {
+    email address
+    --
+    - id (AutoField)
+    ~ user (ForeignKey)
+    + email (EmailField)
+    + verified (BooleanField)
+    + primary (BooleanField)
+    --
+}
+account.EmailAddress *-- auth.User
+
+
+class "account.EmailConfirmation <Accounts>" as account.EmailConfirmation #e2f4d6 {
+    email confirmation
+    --
+    - id (AutoField)
+    ~ email_address (ForeignKey)
+    + created (DateTimeField)
+    + sent (DateTimeField)
+    + key (CharField)
+    --
+}
+account.EmailConfirmation *-- account.EmailAddress
+
+
+class "socialaccount.SocialApp <Social Accounts>" as socialaccount.SocialApp #d6f4f1 {
+    social application
+    --
+    - id (AutoField)
+    + provider (CharField)
+    + name (CharField)
+    + client_id (CharField)
+    + secret (CharField)
+    + key (CharField)
+    # sites (ManyToManyField)
+    --
+}
+socialaccount.SocialApp *--* sites.Site
+
+
+class "socialaccount.SocialAccount <Social Accounts>" as socialaccount.SocialAccount #d6f4f1 {
+    social account
+    --
+    - id (AutoField)
+    ~ user (ForeignKey)
+    + provider (CharField)
+    + uid (CharField)
+    + last_login (DateTimeField)
+    + date_joined (DateTimeField)
+    + extra_data (JSONField)
+    --
+}
+socialaccount.SocialAccount *-- auth.User
+
+
+class "socialaccount.SocialToken <Social Accounts>" as socialaccount.SocialToken #d6f4f1 {
+    social application token
+    --
+    - id (AutoField)
+    ~ app (ForeignKey)
+    ~ account (ForeignKey)
+    + token (TextField)
+    + token_secret (TextField)
+    + expires_at (DateTimeField)
+    --
+}
+socialaccount.SocialToken *-- socialaccount.SocialApp
+socialaccount.SocialToken *-- socialaccount.SocialAccount
+
+
+class "django_summernote.Attachment <Django Summernote>" as django_summernote.Attachment #ead6f4 {
+    attachment
+    --
+    + id (BigAutoField)
+    + name (CharField)
+    + file (FileField)
+    + uploaded (DateTimeField)
+    --
+}
+
+
+class "coffee.CoffeePost <Coffee>" as coffee.CoffeePost #dfd6f4 {
+    coffee post
+    --
+    + coffee_id (SmallAutoField)
+    ~ username (ForeignKey)
+    + created_on (DateTimeField)
+    + updated_on (DateTimeField)
+    + coffee_name (CharField)
+    + coffee_origin (CharField)
+    + coffee_brand (CharField)
+    + coffee_content (TextField)
+    + coffee_image (CloudinaryField)
+    + slug (SlugField)
+    + status (IntegerField)
+    --
+}
+coffee.CoffeePost *-- auth.User
+
+
+class "coffee.Comment <Coffee>" as coffee.Comment #dfd6f4 {
+    comment
+    --
+    + id (BigAutoField)
+    ~ post (ForeignKey)
+    + name (CharField)
+    + email (EmailField)
+    + body (TextField)
+    + created_on (DateTimeField)
+    + active (BooleanField)
+    --
+}
+coffee.Comment *-- coffee.CoffeePost
+
+
+@enduml
