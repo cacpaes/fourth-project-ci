@@ -1,6 +1,18 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+
+{% block javascripts %}
+<script>
+
+function leaveComment(){
+    const divAlterar = document.getElementById("alert-comment")
+
+    divAlterar.style.setProperty("display", "none", "important");
+}
+    
+</script>
+{% endblock javascripts %}
 <div style="margin:auto">
 
 
@@ -48,11 +60,16 @@
             {%endif %}
 
             {% if user.is_authenticated %}
-            <div class="card-body mt-5 margin-left-details">
+            <div class="card-body mt-5 margin-left-details" >
                 {% if new_comment %}
-                <div class="alert alert-success" role="alert">
-                    Your comment is awaiting moderation
+                <div class="alert alert-success background-message" id="alert-comment"  role="alert">
+                    <div id="alert-comment">
+                        Your comment is awaiting moderation
+                        <button class="list-group-item list-group-item-action active fit-content create-btn" onclick="leaveComment()">Ok!</button>
+                    </div>
+                    
                 </div>
+                
                 {% else %}
                 <h3>Leave a comment</h3>
                 <form method="post" style="margin-top: 1.3em;">
