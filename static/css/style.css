@@ -107,6 +107,13 @@ button,a{
   border-top-left-radius: 15px!important;
 }
 
+.list-group-item.active {
+  z-index: 2;
+  color: #fff;
+  background-color: #895737;
+  border-color: #DAB49D;
+}
+
 .link-social{
   cursor: pointer;
 }
