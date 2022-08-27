@@ -114,6 +114,11 @@ button,a{
   border-color: #DAB49D;
 }
 
+.list-group-item-danger {
+  color: #C08552;
+  background-color: #5E3023;
+}
+
 .link-social{
   cursor: pointer;
 }
