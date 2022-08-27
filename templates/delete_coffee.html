@@ -5,25 +5,24 @@
 <div class="container text-center">
     <h2 class="m-2">Delete Coffee Post.</h2>
 </div>
-<div class="col-md-6 p-0" style="margin: auto;">
-    <div class="card m-3">
+<div class="col-md-6 p-0 cards" style="margin: auto;">
+    <div class="card m-3 cards">
         <div class="card-body m-1 p-1 text-center">
             <div class="card-body m-1 p-1 text-center">
                 <p class="mb-1">Name: {{ coffeepost.coffee_name}}</p>
                 <p class="mb-1">Brand: {{ coffeepost.coffee_brand}}</p>
                 <p class="mb-1">Origin: {{ coffeepost.coffee_origin }}</p>
-                {% if "placeholder" in coffeepost.coffee_image.url %}
-                <img class="card-img-top rounded img-fluid" alt="coffee image placeholder"
-                    src="{% static 'coffee-placeholder.png' %}">
-                {% else %}
-                <img class="card-img-top rounded img-fluid" alt="Coffee image" src=" {{coffeepost.coffee_image.url }}">
+                {% if  coffeepost.coffee_image.url %}
+                <img class="card-img-top rounded img-fluid" alt="Coffee image"
+                style="width: 15em; height:12em"
+                src=" {{coffeepost.coffee_image.url }}">
                 {% endif %}
             </div>
         </div>
     </div>
 </div>
-<div class="col-md-6 p-0" style="margin: auto;">
-    <div class="card m-3">
+<div class="col-md-6 p-0 cards" style="margin: auto;">
+    <div class="card m-3 cards">
         <form method="POST" action="">
             {% csrf_token %}
             <div>

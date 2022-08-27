@@ -4,60 +4,67 @@
 <div style="margin:auto">
 
 
-    <div class="col-md-6 p-0" style="width: 100%;">
-        <div class="card m-3">
-            <div class="card-body m-1 p-1 text-center">
+    <div class="col-md-6 p-0 m-5" style="width: 100%;">
+        <div class="card m-5 not-margin-left">
+            <div class="card-body m-1 p-3 text-center d-flex box-details">
                 {% if post.coffee_image.url  %}
                 <div class="image-container">
-                    <img class="card-img-top rounded img-thumbnail" style="width: 15em; height: 15em;" alt="Coffee image" src=" {{post.coffee_image.url}}">
-                    <p class="card-text" style="text-align: center;">Created by: {{post.username}}</p>
+                    <img class="card-img-top rounded image-detail" alt="Coffee image" src=" {{post.coffee_image.url}}">
+                    <p class="card-text mt-2" style="text-align: center;">Created by: {{post.username}}</p>
                 </div>
                 {% endif %}
-                <section class="mb-4">
+                <section class="mb-4 section-details">
                     <p class="card-text align-text">Name: {{ post.coffee_name }}</p>
                     <p class="card-text align-text">Brand: {{ post.coffee_brand }}</p>
                     <p class="card-text align-text">Origin: {{ post.coffee_origin }}</p>
-                    <p class="card-text align-text"> {{post.coffee_content}}</p>
+                    <div class="m-2 p-2 content-post">
+                        <p class="card-text align-text"> {{post.coffee_content}}</p>
+                    </div>
+                    
+                    <a class="list-group-item list-group-item-action active fit-content mt-2"
+                        href="{% url 'home' %}">Back</a>
                 </section>
-                <a class="list-group-item list-group-item-action active fit-content" href="{% url 'home' %}">Back</a>
+
             </div>
+
+            {% if comments%}
+            <div class="mt-5 margin-left-details">
+                <h4 class="subtitle align-text"> Comments</h1>
+
+                    {% for comment in comments %}
+                    <div class="comments" style="padding: 10px;">
+                        <p class="font-weight-bold align-text">
+                            {{ comment.name }}
+                            <span class=" text-muted font-weight-normal">
+                                {{ comment.created_on }}
+                            </span>
+                        </p>
+                        {{ comment.body | linebreaks }}
+                    </div>
+                    {% endfor %}
+            </div>
+            {%endif %}
+
+            {% if user.is_authenticated %}
+            <div class="card-body mt-5 margin-left-details">
+                {% if new_comment %}
+                <div class="alert alert-success" role="alert">
+                    Your comment is awaiting moderation
+                </div>
+                {% else %}
+                <h3>Leave a comment</h3>
+                <form method="post" style="margin-top: 1.3em;">
+                    {{ comment_form.as_p }}
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+                </form>
+                {% endif %}
+            </div>
+            {% endif %}
         </div>
     </div>
-
-    {% if comments%}
-    <div class="">
-    <h4 class="subtitle align-text"> Comments</h1>
-   
-    {% for comment in comments %}
-    <div class="comments" style="padding: 10px;">
-        <p class="font-weight-bold align-text">
-            {{ comment.name }}
-            <span class=" text-muted font-weight-normal">
-                {{ comment.created_on }}
-            </span>
-        </p>
-        {{ comment.body | linebreaks }}
-    </div>
-    {% endfor %}
 </div>
-    {%endif %}
 
-    {% if user.is_authenticated %}
-    <div class="card-body">
-        {% if new_comment %}
-        <div class="alert alert-success" role="alert">
-            Your comment is awaiting moderation
-        </div>
-        {% else %}
-        <h3>Leave a comment</h3>
-        <form method="post" style="margin-top: 1.3em;">
-            {{ comment_form.as_p }}
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
-        </form>
-        {% endif %}
-    </div>
-    {% endif %}
-</div>
+
 
 {% endblock content %}
