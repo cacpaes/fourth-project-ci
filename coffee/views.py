@@ -14,10 +14,12 @@ class CoffeeIndex(generic.ListView):
     template_name = 'index.html'
     paginate_by = 8
 
+
 class CoffeeMyarea(generic.ListView):
     model = CoffeePost
     template_name = 'my-area.html'
     paginate_by = 8
+
     def get_queryset(self):
         return CoffeePost.objects.filter(username=self.request.user).order_by('-created_on')
 
@@ -27,8 +29,8 @@ class CreateCoffee(generic.CreateView, LoginRequiredMixin):
     User can create a coffee post.
     """
     model = CoffeePost
-    form_class= CoffeePostForm
-    template_name ='add_coffee.html'
+    form_class = CoffeePostForm
+    template_name = 'add_coffee.html'
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
@@ -40,8 +42,9 @@ class CreateCoffee(generic.CreateView, LoginRequiredMixin):
         form.instance.status = 1
         return super(CreateCoffee, self).form_valid(form)
 
-def DetailCoffee(request, slug):
-    template_name='detail_coffee.html'
+
+def detail_coffee(request, slug):
+    template_name = 'detail_coffee.html'
     post = get_object_or_404(CoffeePost, slug=slug)
     comments = post.comments.filter(active=True)
     new_comment = None
@@ -66,7 +69,7 @@ class EditCoffee(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     User can edit their coffee post.
     """
     model = CoffeePost
-    form_class= CoffeePostForm
+    form_class = CoffeePostForm
     template_name = 'add_coffee.html'
     success_url = reverse_lazy('home')
     success_message = "Your post is up to date."

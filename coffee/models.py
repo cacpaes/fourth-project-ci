@@ -36,6 +36,7 @@ class CoffeePost(models.Model):
         self.slug = slugify(autoslug)
         super(CoffeePost, self).save(*args, **kwargs)
 
+
 class Comment(models.Model):
     post = models.ForeignKey(CoffeePost,on_delete=models.CASCADE,related_name='comments')
     name = models.CharField(max_length=80)
