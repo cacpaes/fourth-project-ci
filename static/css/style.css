@@ -119,6 +119,11 @@ button,a{
   background-color: #5E3023;
 }
 
+a {
+  color: #895737;
+  text-decoration: underline;
+}
+
 .link-social{
   cursor: pointer;
 }
