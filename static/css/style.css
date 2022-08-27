@@ -112,7 +112,7 @@ button,a{
 }
 
 .image-detail{
-  width: 40vw;
+  width: 20vw;
   height: 50vh;
 }
 
@@ -156,6 +156,10 @@ button,a{
 .cards{
   background-color: #895737;
   color: white;
+}
+
+.card {
+  background-color: #dab49d;
 }
 
 .about-p{
