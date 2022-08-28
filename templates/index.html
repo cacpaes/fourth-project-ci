@@ -66,12 +66,12 @@ Check it out!!
                             </div>
                             {% endif %}
 
-                            <section  id="{{post.slug}}" class="mb-4 content-text">
+                            <div  id="{{post.slug}}" class="mb-4 content-text">
                             <p class="card-text mt-2 align-text">Name: {{ post.coffee_name }}</p>
                             <p class="card-text align-text">Brand: {{ post.coffee_brand }}</p>
                             <p class="card-text align-text">Origin: {{ post.coffee_origin }}</p>
                             <a class="list-group-item list-group-item-action active fit-content center border-radius-btn" style="margin: auto;" href="{% url 'detail' post.slug %}">View more</a>
-                            </section>  
+                            </div>  
                                             
                         </div>
                 </div>

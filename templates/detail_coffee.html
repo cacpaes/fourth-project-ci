@@ -27,7 +27,7 @@ function leaveComment(){
                         href="{% url 'home' %}">Back</a>
                 </div>
                 {% endif %}
-                <section class="mb-4 section-details">
+                <div class="mb-4 section-details">
                     <p class="card-text align-text">Name: {{ post.coffee_name }}</p>
                     <p class="card-text align-text">Brand: {{ post.coffee_brand }}</p>
                     <p class="card-text align-text">Origin: {{ post.coffee_origin }}</p>
@@ -37,7 +37,7 @@ function leaveComment(){
                     
                     <a class="list-group-item list-group-item-action active fit-content mt-2 botao-mobile"
                         href="{% url 'home' %}">Back</a>
-                </section>
+                </div>
 
             </div>
 
