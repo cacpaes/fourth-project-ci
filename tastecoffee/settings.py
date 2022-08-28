@@ -49,8 +49,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'django_summernote',
     'coffee',
-    'puml_generator',
-    'rest_framework_swagger'
+    'puml_generator'
 ]
 
 SITE_ID = 1
