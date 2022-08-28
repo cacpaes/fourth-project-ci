@@ -8,13 +8,13 @@ class CoffeePostForm(forms.ModelForm):
     """
     coffee_brand = forms.CharField(
         widget=forms.TextInput(attrs={'placeholder': 'Ex: Nespresso, ...', 'class': 'form-control'}), label="Brand",
-        max_length=30)
+        max_length=20)
     coffee_origin = forms.CharField(
         widget=forms.TextInput(attrs={'placeholder': 'Ex: Minas Gerais, ...', 'class': 'form-control'}), label="Origin",
-        max_length=30)
+        max_length=20)
     coffee_name = forms.CharField(
         widget=forms.TextInput(attrs={'placeholder': 'Ex: Colombiano, ...', 'class': 'form-control'}), label="Name",
-        max_length=30)
+        max_length=20)
     coffee_content = forms.CharField(
         widget=forms.Textarea(attrs={'placeholder': 'Ex: Content Coffee, ...', 'class': 'form-control'}),
         label="Content", max_length=300)
